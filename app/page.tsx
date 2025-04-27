@@ -164,12 +164,17 @@ export default function Home() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={cn("flex flex-col max-w-3xl mx-auto", message.role === "user" ? "items-end" : "items-start")}
+                className={cn(
+                  "flex flex-col max-w-4xl mx-auto w-full",
+                  message.role === "user" ? "items-end" : "items-start",
+                )}
               >
                 <div
                   className={cn(
-                    "px-4 py-2 rounded-lg",
-                    message.role === "user" ? "bg-primary text-primary-foreground" : "bg-muted",
+                    "px-4 py-3 rounded-lg",
+                    message.role === "user"
+                      ? "bg-primary text-primary-foreground max-w-[80%]"
+                      : "bg-muted w-full md:w-[95%] overflow-x-auto",
                   )}
                 >
                   {message.role === "user" ? (
@@ -183,8 +188,8 @@ export default function Home() {
 
             {/* 現在の応答（ストリーミング中） */}
             {(thinking || currentResponse) && (
-              <div className="flex flex-col max-w-3xl mx-auto items-start">
-                <div className="px-4 py-2 rounded-lg bg-muted">
+              <div className="flex flex-col max-w-4xl mx-auto w-full items-start">
+                <div className="px-4 py-3 rounded-lg bg-muted w-full md:w-[95%] overflow-x-auto">
                   {thinking ? <div className="animate-pulse">thinking...</div> : <KaTeX content={currentResponse} />}
                 </div>
               </div>
@@ -198,7 +203,7 @@ export default function Home() {
 
       {/* 入力フォーム */}
       <form onSubmit={handleSubmit} className="border-t p-4">
-        <div className="flex gap-2 max-w-3xl mx-auto">
+        <div className="flex gap-2 max-w-4xl mx-auto">
           <Textarea
             ref={textareaRef}
             value={input}

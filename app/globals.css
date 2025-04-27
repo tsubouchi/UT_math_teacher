@@ -66,3 +66,132 @@
 .katex-content p {
   margin-bottom: 0.75rem;
 }
+
+/* Markdownスタイル調整 */
+.katex-content h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  color: hsl(var(--primary));
+}
+
+.katex-content h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: hsl(var(--primary));
+}
+
+.katex-content strong {
+  font-weight: 600;
+  color: hsl(var(--primary));
+}
+
+.katex-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.katex-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.katex-content li {
+  margin: 0.25rem 0;
+}
+
+.katex-content pre {
+  background-color: hsl(var(--muted));
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
+.katex-content code {
+  font-family: monospace;
+  background-color: hsl(var(--muted));
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.katex-content blockquote {
+  border-left: 4px solid hsl(var(--muted));
+  padding-left: 1rem;
+  margin: 0.75rem 0;
+  color: hsl(var(--muted-foreground));
+}
+
+.katex-content hr {
+  border: 0;
+  border-top: 1px solid hsl(var(--border));
+  margin: 1.5rem 0;
+}
+
+/* 数式のスクロール対応 */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+/* 結論部分の強調 */
+.katex-content .boxed {
+  border: 2px solid hsl(var(--primary));
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+  display: inline-block;
+}
+
+/* テーブルスタイル */
+.katex-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.katex-content th {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.katex-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.katex-content tr:last-child td {
+  border-bottom: none;
+}
+
+.katex-content tr:nth-child(even) {
+  background-color: hsl(var(--muted) / 50%);
+}
+
+.dark .katex-content tr:nth-child(even) {
+  background-color: hsl(var(--muted) / 30%);
+}
+
+/* 設問別回答のスタイル */
+.katex-content h5 + p strong:first-child {
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: hsl(var(--primary));
+}
