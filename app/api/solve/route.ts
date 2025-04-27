@@ -34,7 +34,6 @@ export async function POST(req: Request) {
         temperature: 0.2,
         topP: 0.8,
         maxOutputTokens: 4096,
-        thinkingBudgetTokens: 512, // 難問用に思考トークンを設定
       },
     })
 

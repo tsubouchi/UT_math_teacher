@@ -58,9 +58,9 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
     "zod": "^3.24.1",
-    "@google/generative-ai": "latest",
     "katex": "latest",
-    "@tailwindcss/typography": "latest"
+    "@tailwindcss/typography": "latest",
+    "@google/generative-ai": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
