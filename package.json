@@ -60,7 +60,6 @@
     "zod": "^3.24.1",
     "@tailwindcss/typography": "latest",
     "@google/generative-ai": "latest",
-    "katex": "latest",
     "react-markdown": "latest"
   },
   "devDependencies": {

@@ -1,8 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import katex from "katex"
-import "katex/dist/katex.min.css"
 import { cn } from "@/lib/utils"
 import ReactMarkdown from "react-markdown"
 
@@ -29,6 +27,25 @@ export default function KaTeX({ content, className }: KaTeXProps) {
     }
   }, [content])
 
+  // KaTeXをグローバルから使用するための関数
+  const renderKaTeX = (formula: string, displayMode: boolean) => {
+    if (typeof window === "undefined" || !window.katex) {
+      return formula
+    }
+
+    try {
+      return window.katex.renderToString(formula, {
+        displayMode,
+        throwOnError: false,
+      })
+    } catch (error) {
+      console.error("KaTeX rendering error:", error)
+      return displayMode
+        ? `<div class="text-red-500">数式エラー: ${formula}</div>`
+        : `<span class="text-red-500">数式エラー: ${formula}</span>`
+    }
+  }
+
   return (
     <div className={cn("katex-content prose dark:prose-invert max-w-none", className)}>
       <ReactMarkdown
@@ -38,43 +55,27 @@ export default function KaTeX({ content, className }: KaTeXProps) {
             const text = String(children).replace(/\n$/, "")
 
             if (inline && text.startsWith("$") && text.endsWith("$")) {
-              try {
-                const formula = text.slice(1, -1)
-                return (
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: katex.renderToString(formula, {
-                        displayMode: false,
-                        throwOnError: false,
-                      }),
-                    }}
-                  />
-                )
-              } catch (error) {
-                console.error("KaTeX inline error:", error)
-                return <code className="text-red-500">{text}</code>
-              }
+              const formula = text.slice(1, -1)
+              return (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: renderKaTeX(formula, false),
+                  }}
+                />
+              )
             }
 
             // ブロック数式
             if (text.startsWith("$$") && text.endsWith("$$")) {
-              try {
-                const formula = text.slice(2, -2)
-                return (
-                  <div
-                    className="flex justify-center my-4"
-                    dangerouslySetInnerHTML={{
-                      __html: katex.renderToString(formula, {
-                        displayMode: true,
-                        throwOnError: false,
-                      }),
-                    }}
-                  />
-                )
-              } catch (error) {
-                console.error("KaTeX block error:", error)
-                return <pre className="text-red-500">{text}</pre>
-              }
+              const formula = text.slice(2, -2)
+              return (
+                <div
+                  className="flex justify-center my-4"
+                  dangerouslySetInnerHTML={{
+                    __html: renderKaTeX(formula, true),
+                  }}
+                />
+              )
             }
 
             // 通常のコード
