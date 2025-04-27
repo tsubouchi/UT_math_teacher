@@ -132,8 +132,8 @@ export default function Home() {
   return (
     <main className="flex flex-col h-screen max-h-screen overflow-hidden">
       {/* ヘッダー */}
-      <header className="border-b p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">東大数学チューター</h1>
+      <header className="border-b p-4 flex justify-between items-center bg-background sticky top-0 z-10">
+        <h1 className="text-xl font-bold text-primary">東大数学チューター</h1>
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
@@ -174,7 +174,7 @@ export default function Home() {
                     "px-4 py-3 rounded-lg",
                     message.role === "user"
                       ? "bg-primary text-primary-foreground max-w-[80%]"
-                      : "bg-muted w-full md:w-[95%] overflow-x-auto",
+                      : "bg-card border shadow-sm w-full overflow-x-auto",
                   )}
                 >
                   {message.role === "user" ? (
@@ -189,7 +189,7 @@ export default function Home() {
             {/* 現在の応答（ストリーミング中） */}
             {(thinking || currentResponse) && (
               <div className="flex flex-col max-w-4xl mx-auto w-full items-start">
-                <div className="px-4 py-3 rounded-lg bg-muted w-full md:w-[95%] overflow-x-auto">
+                <div className="px-4 py-3 rounded-lg w-full overflow-x-auto bg-card border shadow-sm">
                   {thinking ? <div className="animate-pulse">thinking...</div> : <KaTeX content={currentResponse} />}
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function Home() {
       </div>
 
       {/* 入力フォーム */}
-      <form onSubmit={handleSubmit} className="border-t p-4">
+      <form onSubmit={handleSubmit} className="border-t p-4 bg-background sticky bottom-0 z-10">
         <div className="flex gap-2 max-w-4xl mx-auto">
           <Textarea
             ref={textareaRef}
